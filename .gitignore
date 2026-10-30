@@ -1,0 +1,30 @@
+# Android Studio / IntelliJ
+*.iml
+.idea/
+.kotlin/
+
+# Gradle
+.gradle/
+build/
+
+# The wrapper jar is checked in on purpose
+!gradle/wrapper/gradle-wrapper.jar
+
+# The SDK location of this machine
+local.properties
+
+# Signing material must never be committed
+*.keystore
+*.jks
+!debug.keystore
+
+# Build output
+*.apk
+*.aab
+captures/
+.externalNativeBuild
+.cxx
+
+# OS files
+.DS_Store
+Thumbs.db

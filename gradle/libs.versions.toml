@@ -1,0 +1,26 @@
+[versions]
+agp = "9.4.1"
+activity = "1.13.0"
+coreKtx = "1.19.1"
+datastore = "1.3.0"
+json = "20260814"
+junit = "4.13.2"
+kotlin = "2.2.10"
+lifecycle = "2.11.0"
+work = "2.12.0"
+testExtJunit = "1.3.0"
+testRunner = "1.7.0"
+
+[libraries]
+androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+androidx-work-runtime = { group = "androidx.work", name = "work-runtime", version.ref = "work" }
+androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "testExtJunit" }
+androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "testRunner" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+json = { group = "org.json", name = "json", version.ref = "json" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }

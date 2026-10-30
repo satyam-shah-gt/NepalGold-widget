@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Fetching the daily rate. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Required by WorkManager's NetworkType.CONNECTED constraint. -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- Android 13+ requires an explicit runtime grant before any notification is shown. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!--
+        Lets the app discover home launcher packages on API 30+. Needed when a widget serves
+        images through a content:// URI that the launcher must be granted read access to.
+    -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.HOME" />
+        </intent>
+    </queries>
+
+    <application
+        android:name=".GoldRateApp"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Fenegosidawidget">
+
+        <!--
+            The settings screen. It has no LAUNCHER intent filter on purpose: the app is a
+            widget-first experience and must not appear in the launcher. It is opened by tapping
+            the widget body.
+        -->
+        <activity
+            android:name=".ui.ConfigActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:label="@string/config_title"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Fenegosidawidget"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Home screen widget provider. -->
+        <receiver
+            android:name=".widget.GoldRateWidgetProvider"
+            android:exported="true"
+            android:label="@string/widget_label">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/gold_rate_widget_info" />
+        </receiver>
+
+        <!-- Handles the widget's refresh button. -->
+        <receiver
+            android:name=".widget.RefreshReceiver"
+            android:exported="false" />
+
+        <!-- Handles the widget's GOLD / SILVER switch. -->
+        <receiver
+            android:name=".widget.ToggleReceiver"
+            android:exported="false" />
+    </application>
+
+</manifest>
