@@ -1,0 +1,7 @@
+# AGP 9 combines every keep rule file in src/main/keepRules and passes them to R8.
+
+# WorkManager instantiates workers reflectively, so the class and its constructor must survive
+# minification.
+-keep class * extends androidx.work.CoroutineWorker {
+    public <init>(android.content.Context, androidx.work.WorkerParameters);
+}

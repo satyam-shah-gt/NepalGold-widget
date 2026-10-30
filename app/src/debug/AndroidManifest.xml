@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+
+        <!--
+            Debug-only harness for previewing the widget layout. It is exported so it can be
+            launched from adb, and it only exists in the debug variant.
+        -->
+        <activity
+            android:name=".debug.WidgetPreviewActivity"
+            android:exported="true"
+            android:label="Widget preview" />
+    </application>
+
+</manifest>

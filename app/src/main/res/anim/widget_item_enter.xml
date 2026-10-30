@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Entry animation for a single rate row. The layout animation controller staggers these across
+    the rows, so the rate list reveals itself from the top down whenever the widget is drawn.
+-->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="340"
+    android:interpolator="@android:interpolator/decelerate_cubic">
+
+    <alpha
+        android:fromAlpha="0.0"
+        android:toAlpha="1.0" />
+
+    <translate
+        android:fromYDelta="12%p"
+        android:toYDelta="0%p" />
+</set>

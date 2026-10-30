@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gold Rate</string>
+
+    <!-- Widget -->
+    <string name="widget_label">Daily Gold &amp; Silver Rate</string>
+    <string name="widget_title">Today\'s Gold &amp; Silver</string>
+    <string name="widget_description">Daily gold and silver rate published by fenegosida.org</string>
+    <string name="widget_axis_days">DAYS</string>
+    <string name="widget_chart_description">Rate history chart</string>
+    <string name="widget_rate_label">LATEST</string>
+    <string name="widget_no_data">No rate data yet</string>
+    <string name="widget_update_failed">couldn\'t update</string>
+    <string name="widget_updated_at">Updated %1$s</string>
+    <string name="toggle_gold">GOLD</string>
+    <string name="toggle_silver">SILVER</string>
+    <string name="currency_symbol">Rs.</string>
+    <string name="rate_unit_tola">/ tola</string>
+    <string name="action_refresh">Refresh ↻</string>
+
+    <!-- Relative times -->
+    <string name="time_now">just now</string>
+    <string name="time_minutes">%1$d min ago</string>
+    <string name="time_hours">%1$d h ago</string>
+    <string name="time_unknown">never</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_name">Daily rate updates</string>
+    <string name="notification_channel_description">Notifies you after the daily gold and silver rate has been fetched.</string>
+    <string name="notification_title">Gold rate updated</string>
+    <string name="notification_text">1 tola gold: %1$s</string>
+
+    <!-- Settings screen -->
+    <string name="config_title">Gold Rate Settings</string>
+    <string name="config_notifications_title">Notifications</string>
+    <string name="config_notifications_enabled">Daily rate notifications are enabled.</string>
+    <string name="config_notifications_disabled">Notifications are blocked, so no daily alert is shown.</string>
+    <string name="config_notifications_enable">Allow notifications</string>
+    <string name="config_language_title">Language</string>
+    <string name="config_language_english">English</string>
+    <string name="config_language_nepali">नेपाली</string>
+    <string name="config_metal_title">Widget shows</string>
+    <string name="config_metal_gold">Gold</string>
+    <string name="config_metal_silver">Silver</string>
+    <string name="config_refresh_now">Refresh now</string>
+    <string name="config_history_title">History (last %1$d days)</string>
+    <string name="config_history_empty">No history stored yet.</string>
+    <string name="config_change_value">%1$s (%2$s)</string>
+    <string name="config_open_widget_hint">Add the widget to your home screen to see the rate at a glance.</string>
+</resources>

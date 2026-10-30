@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The widget is repainted by the app itself (the background worker updates it after a
+    successful fetch), so the system driven update period is disabled to avoid needless
+    wake-ups. The default size is four by two cells - about the size of a calendar widget.
+-->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:description="@string/widget_description"
+    android:initialLayout="@layout/widget_gold_rate"
+    android:minHeight="@dimen/widget_min_height"
+    android:minResizeHeight="@dimen/widget_min_resize_height"
+    android:minResizeWidth="@dimen/widget_min_resize_width"
+    android:minWidth="@dimen/widget_min_width"
+    android:previewLayout="@layout/widget_preview"
+    android:resizeMode="horizontal|vertical"
+    android:targetCellHeight="2"
+    android:targetCellWidth="4"
+    android:updatePeriodMillis="0"
+    android:widgetCategory="home_screen"
+    tools:targetApi="31" />

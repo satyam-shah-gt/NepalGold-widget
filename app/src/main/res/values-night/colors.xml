@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Widget palette - night. -->
+    <color name="widget_bg_start">#FF202027</color>
+    <color name="widget_bg_end">#FF141418</color>
+    <color name="widget_on_surface">#FFF2F2F5</color>
+    <color name="widget_on_surface_variant">#FFA5A5B0</color>
+    <color name="widget_accent">#FFE8B65A</color>
+    <color name="widget_up">#FF5FD48A</color>
+    <color name="widget_down">#FFFF8A80</color>
+    <color name="widget_divider">#1FFFFFFF</color>
+    <color name="widget_refresh_surface">#1FFFFFFF</color>
+    <color name="widget_ripple">#33FFFFFF</color>
+
+    <!-- Metal accents. -->
+    <color name="widget_accent_gold">#E8B65A</color>
+    <color name="widget_accent_silver">#A8C6E4</color>
+    <color name="widget_toggle_divider">#4DFFFFFF</color>
+    <color name="widget_chart_grid">#26FFFFFF</color>
+</resources>

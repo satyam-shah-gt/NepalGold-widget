@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">सुन र चाँदी दर</string>
+
+    <!-- Widget -->
+    <string name="widget_label">दैनिक सुन र चाँदी दर</string>
+    <string name="widget_title">आजको सुन र चाँदी</string>
+    <string name="widget_description">fenegosida.org बाट प्रकाशित दैनिक सुन र चाँदीको दर</string>
+    <string name="widget_axis_days">दिन</string>
+    <string name="widget_chart_description">दरको इतिहास चार्ट</string>
+    <string name="widget_rate_label">पछिल्लो</string>
+    <string name="widget_no_data">अहिलेसम्म कुनै दर छैन</string>
+    <string name="widget_update_failed">अद्यावधिक गर्न सकिएन</string>
+    <string name="widget_updated_at">अद्यावधिक: %1$s</string>
+    <string name="toggle_gold">सुन</string>
+    <string name="toggle_silver">चाँदी</string>
+    <string name="currency_symbol">रु.</string>
+    <string name="rate_unit_tola">/ तोला</string>
+    <string name="action_refresh">ताजा ↻</string>
+
+    <!-- Relative times -->
+    <string name="time_now">अहिले</string>
+    <string name="time_minutes">%1$d मिनेट पहिले</string>
+    <string name="time_hours">%1$d घण्टा पहिले</string>
+    <string name="time_unknown">कहिल्यै</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_name">दैनिक दर अद्यावधिक</string>
+    <string name="notification_channel_description">दैनिक सुन र चाँदीको दर प्राप्त भएपछि सूचना दिन्छ।</string>
+    <string name="notification_title">सुनको दर अद्यावधिक भयो</string>
+    <string name="notification_text">१ तोला सुन: %1$s</string>
+
+    <!-- Settings screen -->
+    <string name="config_title">सुन र चाँदी दर सेटिङ</string>
+    <string name="config_notifications_title">सूचनाहरू</string>
+    <string name="config_notifications_enabled">दैनिक दरका सूचनाहरू सक्रिय छन्।</string>
+    <string name="config_notifications_disabled">सूचनाहरू रोकिएका छन्, त्यसैले दैनिक सूचना देखिँदैन।</string>
+    <string name="config_notifications_enable">सूचना अनुमति दिनुहोस्</string>
+    <string name="config_language_title">भाषा</string>
+    <string name="config_language_english">English</string>
+    <string name="config_language_nepali">नेपाली</string>
+    <string name="config_metal_title">विजेटले देखाउने</string>
+    <string name="config_metal_gold">सुन</string>
+    <string name="config_metal_silver">चाँदी</string>
+    <string name="config_refresh_now">अहिले ताजा गर्नुहोस्</string>
+    <string name="config_history_title">इतिहास (गत %1$d दिन)</string>
+    <string name="config_history_empty">अहिलेसम्म कुनै इतिहास छैन।</string>
+    <string name="config_change_value">%1$s (%2$s)</string>
+    <string name="config_open_widget_hint">दर हेर्न आफ्नो होम स्क्रिनमा विजेट राख्नुहोस्।</string>
+</resources>

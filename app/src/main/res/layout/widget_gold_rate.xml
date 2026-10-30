@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The home screen widget: a frosted glass card holding the rate chart, the latest rate with
+    its daily change, and a footer with the GOLD / SILVER switch.
+
+    The layout is chart first - the chart takes all the space that is left after the fixed rows,
+    so the history stays readable even in a small widget.
+
+    Every label of the chart is a real view, not part of the chart bitmap: a launcher reports
+    the widget's minimum size rather than the size it really gave the widget, so the bitmap is
+    always stretched to fit. Text drawn into the bitmap would be stretched with it.
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_glass_background"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:id="@+id/widget_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layoutAnimation="@anim/widget_layout_enter"
+        android:orientation="vertical">
+
+        <!-- The chart: the value labels on the left, the drawing next to them. -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="26dp"
+                android:layout_height="match_parent"
+                android:gravity="end"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/widget_axis_currency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:textColor="@color/widget_on_surface_variant"
+                    android:textSize="7sp" />
+
+                <TextView
+                    android:id="@+id/widget_axis_high"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:textColor="@color/widget_on_surface_variant"
+                    android:textSize="7sp" />
+
+                <!-- A plain Space is not an allowed RemoteViews class, so the gap is a
+                     zero height TextView. -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/widget_axis_low"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:textColor="@color/widget_on_surface_variant"
+                    android:textSize="7sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/widget_chart"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="@string/widget_chart_description"
+                android:scaleType="fitXY" />
+        </LinearLayout>
+
+        <!-- The days the chart covers. One column per point, in the same order. -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="26dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="@string/widget_axis_days"
+                android:textColor="@color/widget_on_surface_variant"
+                android:textSize="7sp" />
+
+            <LinearLayout
+                android:id="@+id/widget_day_labels"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/widget_day_0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/widget_on_surface_variant"
+                    android:textSize="7sp" />
+
+                <TextView
+                    android:id="@+id/widget_day_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/widget_on_surface_variant"
+                    android:textSize="7sp" />
+
+                <TextView
+                    android:id="@+id/widget_day_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/widget_on_surface_variant"
+                    android:textSize="7sp" />
+
+                <TextView
+                    android:id="@+id/widget_day_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/widget_on_surface_variant"
+                    android:textSize="7sp" />
+
+                <TextView
+                    android:id="@+id/widget_day_4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/widget_on_surface_variant"
+                    android:textSize="7sp" />
+
+                <TextView
+                    android:id="@+id/widget_day_5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/widget_on_surface_variant"
+                    android:textSize="7sp" />
+
+                <TextView
+                    android:id="@+id/widget_day_6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/widget_on_surface_variant"
+                    android:textSize="7sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- The latest rate and the daily change, on one line. -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/widget_rate_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:letterSpacing="0.12"
+                android:maxLines="1"
+                android:text="@string/widget_rate_label"
+                android:textColor="@color/widget_on_surface_variant"
+                android:textSize="8sp" />
+
+            <TextView
+                android:id="@+id/widget_rate_symbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textColor="@color/widget_on_surface"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/widget_rate_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:maxLines="1"
+                android:textColor="@color/widget_on_surface"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/widget_rate_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:ellipsize="end"
+                android:gravity="bottom"
+                android:maxLines="1"
+                android:textColor="@color/widget_on_surface_variant"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/widget_rate_change"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:maxLines="1"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/widget_rate_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:maxLines="1"
+                android:textColor="@color/widget_on_surface_variant"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <!-- Footer: the metal switch, the update time and the refresh button. -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/widget_toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/widget_toggle_container"
+                android:orientation="horizontal"
+                android:padding="2dp">
+
+                <TextView
+                    android:id="@+id/widget_toggle_gold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
+                    android:paddingTop="2dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="2dp"
+                    android:text="@string/toggle_gold"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/widget_toggle_divider"
+                    android:layout_width="1dp"
+                    android:layout_height="11dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/widget_toggle_divider" />
+
+                <TextView
+                    android:id="@+id/widget_toggle_silver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
+                    android:paddingTop="2dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="2dp"
+                    android:text="@string/toggle_silver"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/widget_updated"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:gravity="end"
+                android:maxLines="1"
+                android:textColor="@color/widget_on_surface_variant"
+                android:textSize="9sp" />
+
+            <TextView
+                android:id="@+id/widget_refresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/widget_refresh_pill"
+                android:drawablePadding="4dp"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:paddingStart="9dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="9dp"
+                android:paddingBottom="5dp"
+                android:text="@string/action_refresh"
+                android:textColor="@color/widget_on_surface"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

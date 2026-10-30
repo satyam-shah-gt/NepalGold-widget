@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Night variant so the settings screen follows the system theme. -->
+    <style name="Theme.Fenegosidawidget" parent="android:Theme.Material.NoActionBar" />
+</resources>
