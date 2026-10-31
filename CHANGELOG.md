@@ -6,12 +6,16 @@ app ships under.
 
 ## [Unreleased]
 
+Nothing yet.
+
+## [1.2] - 2026-10-31
+
 ### Added
 
 - **The transparency of the widget can be chosen.** The settings screen has a new control with
   three levels - Subtle, Balanced and Solid - that say how much of the wallpaper shows through
   the widget's glass surface. Changing it repaints every placed widget at once. Balanced is what
-  the widget looks like today, so nothing changes until the user picks a level.
+  the widget looked like in 1.1, so nothing changes until the user picks a level.
 
 ## [1.1] - 2026-10-31
 
