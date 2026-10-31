@@ -5,6 +5,8 @@ A small, widget-first Android app that shows the daily gold and silver rate publ
 
 There is no launcher icon and no feed to scroll: you add the widget, and it shows the rate.
 
+What changed in each version is in the [changelog](CHANGELOG.md).
+
 | English | Nepali |
 |---|---|
 | ![Widget in English](docs/screenshots/widget-english.png) | ![Widget in Nepali](docs/screenshots/widget-nepali.png) |
@@ -71,7 +73,7 @@ app/src/main/java/com/goldrate/widget/
 ├── data/      the API client, the parser, the store, the formatting
 ├── work/      the WorkManager scheduler and the daily sync worker
 ├── widget/    the widget provider, the RemoteViews renderer, the chart painter
-├── ui/        the settings screen
+├── ui/        the settings screen, the segmented control and the history table
 └── notify/    the notification channel
 ```
 
