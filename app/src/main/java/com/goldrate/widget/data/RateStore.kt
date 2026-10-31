@@ -51,6 +51,11 @@ class RateStore(context: Context) {
     /** The metal the widget is currently showing. */
     val metal: Flow<Metal> = store.data.map { Metal.from(it[KEY_METAL]) }
 
+    /** How much of the wallpaper shows through the widget's surface. */
+    val transparency: Flow<Transparency> = store.data.map {
+        Transparency.from(it[KEY_TRANSPARENCY])
+    }
+
     /** Epoch millis of the last successful fetch, 0 if there has never been one. */
     val lastSuccessAt: Flow<Long> = store.data.map { it[KEY_LAST_SUCCESS] ?: 0L }
 
@@ -60,6 +65,12 @@ class RateStore(context: Context) {
     suspend fun currentLanguage(): AppLang = language.first()
 
     suspend fun currentMetal(): Metal = metal.first()
+
+    suspend fun currentTransparency(): Transparency = transparency.first()
+
+    suspend fun setTransparency(transparency: Transparency) {
+        store.edit { it[KEY_TRANSPARENCY] = transparency.code }
+    }
 
     suspend fun setMetal(metal: Metal) {
         store.edit { it[KEY_METAL] = metal.code }
@@ -166,6 +177,7 @@ class RateStore(context: Context) {
         private val KEY_HISTORY = stringPreferencesKey("history_json")
         private val KEY_LANGUAGE = stringPreferencesKey("language_preference")
         private val KEY_METAL = stringPreferencesKey("metal_preference")
+        private val KEY_TRANSPARENCY = stringPreferencesKey("transparency_preference")
         private val KEY_LAST_SUCCESS = longPreferencesKey("last_success_at")
         private val KEY_LAST_ERROR = longPreferencesKey("last_error_at")
 

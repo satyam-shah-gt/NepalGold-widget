@@ -46,6 +46,11 @@
     <string name="config_metal_hint">The table below follows this choice</string>
     <string name="config_metal_gold">Gold</string>
     <string name="config_metal_silver">Silver</string>
+    <string name="config_transparency_title">Transparency</string>
+    <string name="config_transparency_hint">How much of the wallpaper shows through</string>
+    <string name="config_transparency_subtle">Subtle</string>
+    <string name="config_transparency_balanced">Balanced</string>
+    <string name="config_transparency_solid">Solid</string>
     <string name="config_refresh_now">Refresh now</string>
     <string name="config_history_title">History (last %1$s days)</string>
     <string name="config_history_caption">%1$s · 1 tola</string>

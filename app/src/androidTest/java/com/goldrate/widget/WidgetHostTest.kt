@@ -14,6 +14,7 @@ import com.goldrate.widget.data.AppLang
 import com.goldrate.widget.data.DayRates
 import com.goldrate.widget.data.Metal
 import com.goldrate.widget.data.RateQuote
+import com.goldrate.widget.data.Transparency
 import com.goldrate.widget.widget.GoldRateWidgetProvider
 import com.goldrate.widget.widget.RateChart
 import com.goldrate.widget.widget.WidgetRenderer
@@ -234,6 +235,40 @@ class WidgetHostTest {
         assertEquals(
             "Oct 29",
             root.findViewById<TextView>(R.id.widget_rate_date).text.toString(),
+        )
+    }
+
+    @Test
+    fun theTransparencyChangesTheSurface() {
+        // Every level is its own drawable: the launcher draws the widget and RemoteViews can only
+        // call methods that take an int, so the opacity cannot be applied at runtime.
+        val surfaces = Transparency.entries.map { level ->
+            val views = WidgetRenderer.build(
+                context,
+                state().copy(transparency = level),
+                chartWidthPx = 600,
+                chartHeightPx = 200,
+            )
+            val root = views.apply(context, FrameLayout(context))
+            root.findViewById<View>(R.id.widget_root).background?.constantState
+        }
+
+        assertEquals(
+            "Every level must draw its own surface",
+            Transparency.entries.size,
+            surfaces.toSet().size,
+        )
+    }
+
+    @Test
+    fun theWidgetShipsWithTheBalancedSurface() {
+        val views = WidgetRenderer.build(context, state(), chartWidthPx = 600, chartHeightPx = 200)
+        val root = views.apply(context, FrameLayout(context))
+
+        assertEquals(
+            "The widget must keep the surface it ships with",
+            context.getDrawable(R.drawable.widget_glass_balanced)?.constantState,
+            root.findViewById<View>(R.id.widget_root).background?.constantState,
         )
     }
 

@@ -274,6 +274,41 @@
                     android:layout_marginTop="10dp" />
             </LinearLayout>
 
+            <!-- How much of the wallpaper shows through the widget. -->
+            <LinearLayout
+                android:id="@+id/transparencyCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/ui_surface_card"
+                android:orientation="vertical"
+                android:padding="@dimen/ui_card_padding">
+
+                <TextView
+                    android:id="@+id/transparencyTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/config_transparency_title"
+                    android:textColor="@color/ui_on_surface"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/transparencyHint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/config_transparency_hint"
+                    android:textColor="@color/ui_on_surface_variant"
+                    android:textSize="12sp" />
+
+                <com.goldrate.widget.ui.SegmentedControl
+                    android:id="@+id/transparencyControl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp" />
+            </LinearLayout>
+
             <!-- The stored history, as a table. -->
             <LinearLayout
                 android:id="@+id/historyCard"

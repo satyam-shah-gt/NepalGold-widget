@@ -46,6 +46,11 @@
     <string name="config_metal_hint">तलको तालिका यही अनुसार बदलिन्छ</string>
     <string name="config_metal_gold">सुन</string>
     <string name="config_metal_silver">चाँदी</string>
+    <string name="config_transparency_title">पारदर्शिता</string>
+    <string name="config_transparency_hint">पृष्ठभूमि कत्तिको देखिन्छ</string>
+    <string name="config_transparency_subtle">हल्का</string>
+    <string name="config_transparency_balanced">सन्तुलित</string>
+    <string name="config_transparency_solid">ठोस</string>
     <string name="config_refresh_now">अहिले ताजा गर्नुहोस्</string>
     <string name="config_history_title">इतिहास (गत %1$s दिन)</string>
     <string name="config_history_caption">%1$s · १ तोला</string>

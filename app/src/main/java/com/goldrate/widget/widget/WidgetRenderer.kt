@@ -17,6 +17,7 @@ import com.goldrate.widget.data.Metal
 import com.goldrate.widget.data.RateDates
 import com.goldrate.widget.data.RateSeries
 import com.goldrate.widget.data.RateStore
+import com.goldrate.widget.data.Transparency
 import com.goldrate.widget.data.withLanguage
 import com.goldrate.widget.ui.ConfigActivity
 import java.time.Duration
@@ -35,6 +36,7 @@ data class WidgetState(
     val lastSuccessAt: Long,
     val showSpinner: Boolean = false,
     val stale: Boolean = false,
+    val transparency: Transparency = Transparency.BALANCED,
 )
 
 /**
@@ -69,6 +71,7 @@ object WidgetRenderer {
             lastSuccessAt = store.lastSuccessAt.first(),
             showSpinner = showSpinner,
             stale = store.isStale(),
+            transparency = store.currentTransparency(),
         )
         val (chartWidthPx, chartHeightPx) = chartSizePx(context, ids)
         val views = build(context, state, chartWidthPx, chartHeightPx)
@@ -99,6 +102,16 @@ object WidgetRenderer {
             R.color.widget_accent_silver
         }
         val accent = ContextCompat.getColor(context, accentRes)
+
+        // ---- The surface the widget is drawn on -------------------------------------------
+        // The launcher draws the widget, and RemoteViews can only call methods that take an int,
+        // so the transparency is a drawable that is swapped rather than an alpha that is
+        // applied at runtime.
+        views.setInt(
+            R.id.widget_root,
+            "setBackgroundResource",
+            surfaceFor(state.transparency),
+        )
 
         // Every string is set from the localised context. The launcher resolves the strings that
         // are baked into the layout against the *device* locale, so they would ignore the
@@ -254,6 +267,13 @@ object WidgetRenderer {
         views.setOnClickPendingIntent(R.id.widget_root, settingsPendingIntent(context))
 
         return views
+    }
+
+    /** The glass surface that belongs to a transparency level. */
+    private fun surfaceFor(transparency: Transparency): Int = when (transparency) {
+        Transparency.SUBTLE -> R.drawable.widget_glass_subtle
+        Transparency.BALANCED -> R.drawable.widget_glass_balanced
+        Transparency.SOLID -> R.drawable.widget_glass_solid
     }
 
     /**

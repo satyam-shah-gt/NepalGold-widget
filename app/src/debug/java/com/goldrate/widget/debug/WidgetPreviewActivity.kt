@@ -82,6 +82,7 @@ class WidgetPreviewActivity : Activity() {
                 today = history.firstOrNull(),
                 history = history,
                 lastSuccessAt = System.currentTimeMillis(),
+                transparency = store.currentTransparency(),
             )
             // Size the card like the launcher would: a four by two grid of the default six row
             // home screen, so the preview reflects the real proportions.

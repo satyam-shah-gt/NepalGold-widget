@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    The frosted glass surface of the widget. It is deliberately translucent so the wallpaper
-    shows through, like a Samsung One UI widget.
+    The frosted glass surface of the widget, at the transparency the widget ships with.
+
+    It is deliberately translucent so the wallpaper shows through, like a Samsung One UI widget.
 -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">

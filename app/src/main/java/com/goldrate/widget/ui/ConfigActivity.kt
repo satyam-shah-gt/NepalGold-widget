@@ -27,6 +27,7 @@ import com.goldrate.widget.data.Metal
 import com.goldrate.widget.data.RateDates
 import com.goldrate.widget.data.RateSeries
 import com.goldrate.widget.data.RateStore
+import com.goldrate.widget.data.Transparency
 import com.goldrate.widget.data.withLanguage
 import com.goldrate.widget.notify.Notifier
 import com.goldrate.widget.widget.WidgetRenderer
@@ -53,12 +54,14 @@ class ConfigActivity : ComponentActivity() {
     private lateinit var notificationButton: TextView
     private lateinit var languageControl: SegmentedControl
     private lateinit var metalControl: SegmentedControl
+    private lateinit var transparencyControl: SegmentedControl
     private lateinit var historyTitleText: TextView
     private lateinit var historyCaptionText: TextView
     private lateinit var historyContainer: LinearLayout
 
     private var currentLang = AppLang.EN
     private var currentMetal = Metal.GOLD
+    private var currentTransparency = Transparency.BALANCED
     private var history: List<DayRates> = emptyList()
 
     private val notificationPermissionLauncher =
@@ -91,6 +94,7 @@ class ConfigActivity : ComponentActivity() {
         notificationButton = findViewById(R.id.notificationButton)
         languageControl = findViewById(R.id.languageControl)
         metalControl = findViewById(R.id.metalControl)
+        transparencyControl = findViewById(R.id.transparencyControl)
         historyTitleText = findViewById(R.id.historyTitleText)
         historyCaptionText = findViewById(R.id.historyCaptionText)
         historyContainer = findViewById(R.id.historyContainer)
@@ -111,6 +115,7 @@ class ConfigActivity : ComponentActivity() {
         lifecycleScope.launch {
             currentLang = store.currentLanguage()
             currentMetal = store.currentMetal()
+            currentTransparency = store.currentTransparency()
             history = store.currentHistory()
             renderAll()
         }
@@ -149,6 +154,16 @@ class ConfigActivity : ComponentActivity() {
             accent = metalAccent(),
         ) { index -> onMetalSelected(index) }
         metalControl.select(if (currentMetal == Metal.SILVER) 1 else 0)
+
+        transparencyControl.setOptions(
+            labels = listOf(
+                localized.getString(R.string.config_transparency_subtle),
+                localized.getString(R.string.config_transparency_balanced),
+                localized.getString(R.string.config_transparency_solid),
+            ),
+            accent = ContextCompat.getColor(this, R.color.ui_accent_primary),
+        ) { index -> onTransparencySelected(index) }
+        transparencyControl.select(Transparency.entries.indexOf(currentTransparency))
     }
 
     /** The focus block at the top: the latest published rate and how it moved. */
@@ -262,6 +277,18 @@ class ConfigActivity : ComponentActivity() {
             renderControls()
             renderHeader()
             renderHistory()
+        }
+    }
+
+    private fun onTransparencySelected(index: Int) {
+        val selected = Transparency.entries.getOrNull(index) ?: return
+        if (selected == currentTransparency) return
+        lifecycleScope.launch {
+            store.setTransparency(selected)
+            currentTransparency = selected
+            // The surface of the widget changes, so every placed widget has to be repainted.
+            WidgetRenderer.renderAll(applicationContext)
+            renderControls()
         }
     }
 
