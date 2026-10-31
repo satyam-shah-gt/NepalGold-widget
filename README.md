@@ -23,7 +23,8 @@ What changed in each version is in the [changelog](CHANGELOG.md).
 - **Thirty days of history**, kept on the device.
 - **The history is filled in one go** on the first run: the publisher keeps a month of rates,
   and the app asks for it.
-- **A hidden settings screen** (tap the widget) for the language, the metal and the history.
+- **A hidden settings screen** (tap the widget) for the language, the metal, the transparency of
+  the widget's surface and the history.
 
 ![The widget in the widget picker](docs/screenshots/widget-picker-preview.png)
 
