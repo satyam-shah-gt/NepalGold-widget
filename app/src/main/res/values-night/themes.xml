@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Night variant so the settings screen follows the system theme. -->
-    <style name="Theme.Fenegosidawidget" parent="android:Theme.Material.NoActionBar" />
+    <!--
+        Night variant so the settings screen follows the system theme. The window background is
+        the screen's own colour, so the screen does not paint over it.
+    -->
+    <style name="Theme.Fenegosidawidget" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/ui_page_bg</item>
+    </style>
 </resources>

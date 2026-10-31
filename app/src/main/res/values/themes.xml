@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Fenegosidawidget" parent="android:Theme.Material.Light.NoActionBar" />
+    <!--
+        The window background is the screen's own colour, so the screen does not paint over it.
+        The colour resource has a night variant, so the theme follows the system theme.
+    -->
+    <style name="Theme.Fenegosidawidget" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/ui_page_bg</item>
+    </style>
 </resources>

@@ -10,10 +10,15 @@
     own language and the ones baked into the layout would follow the device instead.
 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/config_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ui_page_bg">
+    tools:ignore="MergeRootFrame"><!--
+        The root cannot be a <merge>: it is the content view of the Activity, so it is
+        inflated without a parent. The page colour is the theme's window background, which
+        keeps the screen from painting over it.
+    -->
 
     <ScrollView
         android:id="@+id/config_scroll"
