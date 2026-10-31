@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application>
 
@@ -11,6 +12,16 @@
             android:name=".debug.WidgetPreviewActivity"
             android:exported="true"
             android:label="Widget preview" />
+
+        <!--
+            The settings screen is not exported in the release build - the widget is the only
+            way into the app. In the debug variant it is exported, so the screen can be opened
+            from adb while it is being worked on.
+        -->
+        <activity
+            android:name=".ui.ConfigActivity"
+            android:exported="true"
+            tools:replace="android:exported" />
     </application>
 
 </manifest>
