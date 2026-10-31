@@ -25,6 +25,9 @@ captures/
 .externalNativeBuild
 .cxx
 
+# The release output of the app module: the signed APK, the R8 mapping and the metadata
+/app/release/
+
 # OS files
 .DS_Store
 Thumbs.db
