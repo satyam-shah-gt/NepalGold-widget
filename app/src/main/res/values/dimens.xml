@@ -9,4 +9,21 @@
     <!-- Widget visuals. -->
     <dimen name="widget_corner_radius">32dp</dimen>
     <dimen name="widget_padding">16dp</dimen>
+
+    <!--
+        Settings screen metrics, in the One UI 9 proportions: a focus block has a big radius,
+        the screen keeps a wide margin and every touch target is at least 48 dp.
+    -->
+    <dimen name="ui_radius_large">26dp</dimen>
+    <dimen name="ui_radius_medium">20dp</dimen>
+    <dimen name="ui_radius_small">12dp</dimen>
+    <dimen name="ui_margin_screen">24dp</dimen>
+    <dimen name="ui_gap">12dp</dimen>
+    <dimen name="ui_gap_small">8dp</dimen>
+    <dimen name="ui_touch_target">48dp</dimen>
+    <dimen name="ui_card_padding">20dp</dimen>
+    <dimen name="ui_outline_height">1dp</dimen>
+
+    <!-- The height of the pinned action bar: the button plus its padding above and below. -->
+    <dimen name="ui_action_bar_height">72dp</dimen>
 </resources>

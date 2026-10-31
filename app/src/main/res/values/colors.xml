@@ -26,4 +26,22 @@
     <color name="widget_accent_silver">#4F7194</color>
     <color name="widget_toggle_divider">#4D7C818C</color>
     <color name="widget_chart_grid">#2E7C818C</color>
+
+    <!-- Settings screen palette - light. The night variant lives in values-night/colors.xml. -->
+    <color name="ui_page_bg">#FFF6EFE4</color>
+    <color name="ui_card_start">#EFFFFFFF</color>
+    <color name="ui_card_end">#C8FFFFFF</color>
+    <color name="ui_card_stroke">#59FFFFFF</color>
+    <color name="ui_on_surface">#FF1B1B1F</color>
+    <color name="ui_on_surface_variant">#FF6C6C76</color>
+    <color name="ui_outline">#1F000000</color>
+    <color name="ui_segment_track">#14FFFFFF</color>
+    <color name="ui_table_header">#0F8A6D26</color>
+    <color name="ui_row_highlight">#0FA97814</color>
+
+    <!-- The accent that carries an action, and the text that sits on it. -->
+    <color name="ui_accent_primary">#FFA97814</color>
+    <color name="ui_on_accent">#FFFFFFFF</color>
+    <color name="ui_surface">#FFFFFFFF</color>
+    <color name="ui_ripple">#33808080</color>
 </resources>

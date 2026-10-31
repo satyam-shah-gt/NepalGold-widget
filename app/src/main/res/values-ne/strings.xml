@@ -32,19 +32,27 @@
 
     <!-- Settings screen -->
     <string name="config_title">सुन र चाँदी दर सेटिङ</string>
+    <string name="config_subtitle">fenegosida.org बाट प्रकाशित दैनिक सुन र चाँदीको दर</string>
+    <string name="config_source">fenegosida.org</string>
     <string name="config_notifications_title">सूचनाहरू</string>
     <string name="config_notifications_enabled">दैनिक दरका सूचनाहरू सक्रिय छन्।</string>
     <string name="config_notifications_disabled">सूचनाहरू रोकिएका छन्, त्यसैले दैनिक सूचना देखिँदैन।</string>
     <string name="config_notifications_enable">सूचना अनुमति दिनुहोस्</string>
     <string name="config_language_title">भाषा</string>
+    <string name="config_language_hint">विजेट र यो स्क्रिन दुवैमा</string>
     <string name="config_language_english">English</string>
     <string name="config_language_nepali">नेपाली</string>
     <string name="config_metal_title">विजेटले देखाउने</string>
+    <string name="config_metal_hint">तलको तालिका यही अनुसार बदलिन्छ</string>
     <string name="config_metal_gold">सुन</string>
     <string name="config_metal_silver">चाँदी</string>
     <string name="config_refresh_now">अहिले ताजा गर्नुहोस्</string>
-    <string name="config_history_title">इतिहास (गत %1$d दिन)</string>
+    <string name="config_history_title">इतिहास (गत %1$s दिन)</string>
+    <string name="config_history_caption">%1$s · १ तोला</string>
     <string name="config_history_empty">अहिलेसम्म कुनै इतिहास छैन।</string>
+    <string name="config_table_date">मिति</string>
+    <string name="config_table_rate">दर</string>
+    <string name="config_table_change">परिवर्तन</string>
     <string name="config_change_value">%1$s (%2$s)</string>
     <string name="config_open_widget_hint">दर हेर्न आफ्नो होम स्क्रिनमा विजेट राख्नुहोस्।</string>
 </resources>

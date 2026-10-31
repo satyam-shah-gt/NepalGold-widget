@@ -32,19 +32,27 @@
 
     <!-- Settings screen -->
     <string name="config_title">Gold Rate Settings</string>
+    <string name="config_subtitle">Daily gold and silver rate from fenegosida.org</string>
+    <string name="config_source">fenegosida.org</string>
     <string name="config_notifications_title">Notifications</string>
     <string name="config_notifications_enabled">Daily rate notifications are enabled.</string>
     <string name="config_notifications_disabled">Notifications are blocked, so no daily alert is shown.</string>
     <string name="config_notifications_enable">Allow notifications</string>
     <string name="config_language_title">Language</string>
+    <string name="config_language_hint">The widget and this screen</string>
     <string name="config_language_english">English</string>
     <string name="config_language_nepali">नेपाली</string>
     <string name="config_metal_title">Widget shows</string>
+    <string name="config_metal_hint">The table below follows this choice</string>
     <string name="config_metal_gold">Gold</string>
     <string name="config_metal_silver">Silver</string>
     <string name="config_refresh_now">Refresh now</string>
-    <string name="config_history_title">History (last %1$d days)</string>
+    <string name="config_history_title">History (last %1$s days)</string>
+    <string name="config_history_caption">%1$s · 1 tola</string>
     <string name="config_history_empty">No history stored yet.</string>
+    <string name="config_table_date">Date</string>
+    <string name="config_table_rate">Rate</string>
+    <string name="config_table_change">Change</string>
     <string name="config_change_value">%1$s (%2$s)</string>
     <string name="config_open_widget_hint">Add the widget to your home screen to see the rate at a glance.</string>
 </resources>
