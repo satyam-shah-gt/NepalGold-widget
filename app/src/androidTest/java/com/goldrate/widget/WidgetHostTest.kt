@@ -3,6 +3,8 @@ package com.goldrate.widget
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProviderInfo
 import android.content.ComponentName
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -269,6 +271,21 @@ class WidgetHostTest {
             "The widget must keep the surface it ships with",
             context.getDrawable(R.drawable.widget_glass_balanced)?.constantState,
             root.findViewById<View>(R.id.widget_root).background?.constantState,
+        )
+    }
+
+    @Test
+    fun theSolidSurfaceIsCompletelyOpaque() {
+        // The level is called Solid, so nothing of the wallpaper may show through its fill.
+        // The check holds in the day and at night, because both variants are opaque.
+        val drawable = context.getDrawable(R.drawable.widget_glass_solid)
+
+        assertNotNull("The solid surface must exist", drawable)
+        val colours = (drawable as GradientDrawable).colors
+        assertNotNull("The solid surface must have colours", colours)
+        assertTrue(
+            "The solid surface must not let the wallpaper through",
+            colours!!.all { Color.alpha(it) == 255 },
         )
     }
 

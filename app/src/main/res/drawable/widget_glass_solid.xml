@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    The most solid level of the frosted glass surface: the least wallpaper shows through here.
-    The shape and the hairline are the same as at every other level.
+    The solid level of the widget's surface: completely opaque, so nothing of the wallpaper
+    shows through. The shape and the hairline are the same as at every other level.
 -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
@@ -10,9 +10,9 @@
 
     <gradient
         android:angle="270"
-        android:centerColor="#F2FFFFFF"
-        android:endColor="#E6FFFFFF"
-        android:startColor="#F7FFFFFF"
+        android:centerColor="#FFFAFAFA"
+        android:endColor="#FFF4F4F4"
+        android:startColor="#FFFFFFFF"
         android:type="linear" />
 
     <stroke

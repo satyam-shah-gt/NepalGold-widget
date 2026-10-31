@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Night variant of the most solid level: darker and nearly opaque. -->
+<!--
+    Night variant of the solid level: completely opaque, so nothing of the wallpaper shows
+    through. The shape and the hairline are the same as at every other level.
+-->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
@@ -7,9 +10,9 @@
 
     <gradient
         android:angle="270"
-        android:centerColor="#B3222630"
-        android:endColor="#99202630"
-        android:startColor="#CC222630"
+        android:centerColor="#FF252932"
+        android:endColor="#FF20242E"
+        android:startColor="#FF2A2E38"
         android:type="linear" />
 
     <stroke
