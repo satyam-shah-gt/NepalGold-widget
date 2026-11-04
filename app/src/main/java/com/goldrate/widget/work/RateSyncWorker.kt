@@ -6,6 +6,7 @@ import androidx.work.WorkerParameters
 import com.goldrate.widget.data.RateApi
 import com.goldrate.widget.data.RateStore
 import com.goldrate.widget.notify.Notifier
+import com.goldrate.widget.notify.RateSummary
 import com.goldrate.widget.widget.WidgetRenderer
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
@@ -29,6 +30,11 @@ class RateSyncWorker(
         return try {
             val parsed = withContext(Dispatchers.IO) { RateApi.fetch() }
 
+            // The day the publisher published, read before the fetched days go into the history.
+            // The publisher skips weekends and holidays, and on those days the endpoint keeps
+            // serving the last published payload - there is nothing new to report then.
+            val storedLatest = store.currentHistory().firstOrNull()?.date
+
             // The endpoint publishes yesterday's rates alongside today's, so both days go into
             // the history and the chart has a trend from the first fetch.
             store.appendDays(parsed.toHistoryDays())
@@ -42,13 +48,15 @@ class RateSyncWorker(
                 store.appendDays(days)
             }
             store.markFetchSucceeded()
-            Notifier.notifySuccess(
-                applicationContext,
-                parsed.quotes,
-                store.currentLanguage(),
-                store.currentMetal(),
-                parsed.date,
-            )
+            if (RateSummary.isNewPublication(storedLatest, parsed.date.toString())) {
+                Notifier.notifySuccess(
+                    applicationContext,
+                    parsed.quotes,
+                    store.currentLanguage(),
+                    store.currentMetal(),
+                    parsed.date,
+                )
+            }
             WidgetRenderer.renderAll(applicationContext)
 
             Result.success()
