@@ -42,7 +42,13 @@ class RateSyncWorker(
                 store.appendDays(days)
             }
             store.markFetchSucceeded()
-            Notifier.notifySuccess(applicationContext, parsed.quotes, store.currentLanguage())
+            Notifier.notifySuccess(
+                applicationContext,
+                parsed.quotes,
+                store.currentLanguage(),
+                store.currentMetal(),
+                parsed.date,
+            )
             WidgetRenderer.renderAll(applicationContext)
 
             Result.success()

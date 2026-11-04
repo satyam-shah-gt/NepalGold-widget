@@ -13,10 +13,11 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.goldrate.widget.R
 import com.goldrate.widget.data.AppLang
-import com.goldrate.widget.data.Format
+import com.goldrate.widget.data.Metal
 import com.goldrate.widget.data.RateQuote
 import com.goldrate.widget.data.withLanguage
 import com.goldrate.widget.ui.ConfigActivity
+import java.time.LocalDate
 
 /**
  * Posts the low-importance notification that fires after a successful daily fetch.
@@ -47,17 +48,28 @@ object Notifier {
     /**
      * Posts the "rate updated" notification.
      *
+     * The notification shows the same rate the widget shows - the one tola rate of the metal the
+     * widget is set to - together with the change against the previous day and the day the rate
+     * belongs to. The day is what makes a notification that is no longer current recognisable.
+     *
      * Silently does nothing when the user has not granted `POST_NOTIFICATIONS` (Android 13+) or
      * has turned notifications off for the channel.
      */
-    fun notifySuccess(context: Context, quotes: List<RateQuote>, lang: AppLang) {
+    fun notifySuccess(
+        context: Context,
+        quotes: List<RateQuote>,
+        lang: AppLang,
+        metal: Metal,
+        date: LocalDate,
+    ) {
         if (!canPostNotifications(context)) return
         ensureChannel(context)
 
         val localized = context.withLanguage(lang)
-        val gold = quotes.firstOrNull { it.type.contains("सुन") && it.type.contains("१० ग्राम") }
-            ?: quotes.firstOrNull()
-        val rate = gold?.let { Format.amount(it.today, lang) } ?: Format.EM_DASH
+        val quote = quotes.firstOrNull { metal.matches(it) }
+        val metalName = localized.getString(
+            if (metal == Metal.GOLD) R.string.config_metal_gold else R.string.config_metal_silver,
+        )
 
         val contentIntent = PendingIntent.getActivity(
             context,
@@ -68,8 +80,17 @@ object Notifier {
 
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notification)
-            .setContentTitle(localized.getString(R.string.notification_title))
-            .setContentText(localized.getString(R.string.notification_text, rate))
+            .setContentTitle(localized.getString(R.string.notification_title, metalName))
+            .setContentText(
+                localized.getString(
+                    R.string.notification_text,
+                    localized.getString(R.string.notification_unit_tola),
+                    RateSummary.rate(quotes, metal, lang),
+                    RateSummary.change(quote, lang),
+                    RateSummary.day(date, lang),
+                ),
+            )
+            .setSubText(localized.getString(R.string.notification_subtext))
             .setPriority(NotificationCompat.PRIORITY_LOW)
             .setAutoCancel(true)
             .setContentIntent(contentIntent)

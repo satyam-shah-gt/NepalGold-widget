@@ -27,8 +27,10 @@
     <!-- Notifications -->
     <string name="notification_channel_name">Daily rate updates</string>
     <string name="notification_channel_description">Notifies you after the daily gold and silver rate has been fetched.</string>
-    <string name="notification_title">Gold rate updated</string>
-    <string name="notification_text">1 tola gold: %1$s</string>
+    <string name="notification_title">%1$s rate updated</string>
+    <string name="notification_text">%1$s: %2$s (%3$s) · %4$s</string>
+    <string name="notification_unit_tola">1 tola</string>
+    <string name="notification_subtext">fenegosida.org</string>
 
     <!-- Settings screen -->
     <string name="config_title">Gold Rate Settings</string>

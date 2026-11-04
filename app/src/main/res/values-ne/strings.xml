@@ -27,8 +27,10 @@
     <!-- Notifications -->
     <string name="notification_channel_name">दैनिक दर अद्यावधिक</string>
     <string name="notification_channel_description">दैनिक सुन र चाँदीको दर प्राप्त भएपछि सूचना दिन्छ।</string>
-    <string name="notification_title">सुनको दर अद्यावधिक भयो</string>
-    <string name="notification_text">१ तोला सुन: %1$s</string>
+    <string name="notification_title">%1$sको दर अद्यावधिक भयो</string>
+    <string name="notification_text">%1$s: %2$s (%3$s) · %4$s</string>
+    <string name="notification_unit_tola">१ तोला</string>
+    <string name="notification_subtext">fenegosida.org</string>
 
     <!-- Settings screen -->
     <string name="config_title">सुन र चाँदी दर सेटिङ</string>
