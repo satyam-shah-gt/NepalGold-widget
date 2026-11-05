@@ -20,6 +20,8 @@ What changed in each version is in the [changelog](CHANGELOG.md).
 - **English and Nepali**, including Devanagari digits and the South Asian 2-2-3 grouping Nepal
   uses (`2,43,055`).
 - **A daily background fetch** through WorkManager, plus a manual refresh button.
+- **A notification when the publisher publishes a new rate** — the amount, the change and the day
+  it belongs to, for the metal the widget is showing.
 - **Thirty days of history**, kept on the device.
 - **The history is filled in one go** on the first run: the publisher keeps a month of rates,
   and the app asks for it.

@@ -8,6 +8,18 @@ app ships under.
 
 Nothing yet.
 
+## [1.4] - 2026-11-5
+
+### Fixed
+
+- **The notification showed the wrong rate.** It reported the price for ten grams under a
+  "1 tola gold" label, so it never showed the rate the widget shows. It shows the one tola rate
+  of the metal the widget is set to now, together with the change against the previous day and
+  the day the rate belongs to.
+- **The notification was posted again on days the publisher did not publish.** The publisher skips
+  weekends and holidays, so the same number came back every day under a title that said the rate
+  had been updated. It is posted only when the publisher's day advanced.
+
 ## [1.3] - 2026-11-4
 
 ### Fixed
