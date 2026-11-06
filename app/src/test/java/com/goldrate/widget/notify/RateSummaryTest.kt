@@ -82,4 +82,39 @@ class RateSummaryTest {
     fun `an older day is not new`() {
         assertFalse(RateSummary.isNewPublication("2026-11-04", "2026-11-03"))
     }
+
+    @Test
+    fun `the notification is posted when the rate of today is new`() {
+        assertTrue(
+            "The rate of a new day is worth a notification",
+            RateSummary.shouldNotify("2026-11-04", LocalDate.of(2026, 11, 5), LocalDate.of(2026, 11, 5)),
+        )
+        assertTrue(
+            "A fresh install has no day yet",
+            RateSummary.shouldNotify(null, LocalDate.of(2026, 11, 5), LocalDate.of(2026, 11, 5)),
+        )
+    }
+
+    @Test
+    fun `the app stays quiet while the publisher has not published today`() {
+        // The endpoint keeps serving the last published payload until the publisher updates, and
+        // on weekends and holidays it does not update at all. A notification then would say the
+        // rate had changed when it had not.
+        assertFalse(
+            "A payload from an earlier day is not worth a notification",
+            RateSummary.shouldNotify(null, LocalDate.of(2026, 11, 7), LocalDate.of(2026, 11, 8)),
+        )
+        assertFalse(
+            "A payload from an earlier day is not worth a notification",
+            RateSummary.shouldNotify("2026-11-06", LocalDate.of(2026, 11, 7), LocalDate.of(2026, 11, 8)),
+        )
+    }
+
+    @Test
+    fun `the app stays quiet when the day did not advance`() {
+        assertFalse(
+            "The rate of today is already on the widget",
+            RateSummary.shouldNotify("2026-11-05", LocalDate.of(2026, 11, 5), LocalDate.of(2026, 11, 5)),
+        )
+    }
 }

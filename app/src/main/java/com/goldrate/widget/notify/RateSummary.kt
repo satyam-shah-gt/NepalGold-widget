@@ -1,6 +1,7 @@
 package com.goldrate.widget.notify
 
 import com.goldrate.widget.data.AppLang
+import com.goldrate.widget.data.FetchOutcome
 import com.goldrate.widget.data.Format
 import com.goldrate.widget.data.Metal
 import com.goldrate.widget.data.RateDates
@@ -46,4 +47,22 @@ object RateSummary {
         if (previousDate == null) return true
         return publishedDate > previousDate
     }
+
+    /**
+     * Whether the daily notification should be posted for a fetched payload.
+     *
+     * Two things have to hold: the payload has to be the rate of [today], and the publisher's day
+     * has to have advanced since the last day that was stored.
+     *
+     * The first one keeps the app quiet on the days the publisher does not publish - weekends
+     * and holidays - when the endpoint keeps serving the last published payload. A notification
+     * then would say the rate had changed when it had not.
+     */
+    fun shouldNotify(
+        previousDate: String?,
+        publishedDate: LocalDate,
+        today: LocalDate,
+    ): Boolean =
+        FetchOutcome.of(publishedDate, today) == FetchOutcome.UPDATED &&
+            isNewPublication(previousDate, publishedDate.toString())
 }
