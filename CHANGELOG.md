@@ -8,6 +8,21 @@ app ships under.
 
 Nothing yet.
 
+## [1.5] - 2026-11-5
+
+### Fixed
+
+- **The daily refresh did not happen at the publisher's publish time.** The automatic fetch was a
+  24 hour periodic job, which has no time of day: Android ran it somewhere inside the day, and
+  a run that landed before the publisher had published brought the previous day's rate and left
+  the widget on it for the rest of the day. The daily fetch now runs at **11:05 Nepal time**, a
+  little after the publisher's usual 10:33-10:48, and the moment is computed in Nepal time, so
+  it is the same moment on a phone set to any timezone.
+- **A deferred run could cost a whole day.** A periodic job runs once per period, so a run the
+  system deferred - a phone lying in deep Doze, for instance - was not repeated until the next
+  day. A safety net now fetches every six hours beside the daily run, so the rate of the day is
+  still picked up the same day.
+
 ## [1.4] - 2026-11-5
 
 ### Fixed
