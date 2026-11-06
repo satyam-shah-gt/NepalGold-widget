@@ -17,7 +17,8 @@ import kotlinx.coroutines.withContext
  * Fetches the daily rate, stores it, notifies the user and repaints the widget.
  *
  * The work always runs in the background: the app process is started by the scheduler, does its
- * job and is then torn down again.
+ * job and is then torn down again. Every run arms the next daily run at the publish time, so
+ * the schedule survives the process that carried it out.
  */
 class RateSyncWorker(
     appContext: Context,
@@ -69,6 +70,10 @@ class RateSyncWorker(
             WidgetRenderer.renderAll(applicationContext)
             if (isStopped) return Result.failure()
             if (runAttemptCount < MAX_ATTEMPTS) Result.retry() else Result.failure()
+        } finally {
+            // Whatever this run did, the next daily run is armed. It is named after the day it
+            // belongs to, so arming it again for a day that already ran changes nothing.
+            WorkScheduler.armNextDailyRun(applicationContext)
         }
     }
 

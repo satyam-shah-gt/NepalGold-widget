@@ -20,7 +20,7 @@ class GoldRateWidgetProvider : AppWidgetProvider() {
 
     override fun onEnabled(context: Context) {
         super.onEnabled(context)
-        WorkScheduler.ensurePeriodic(context)
+        WorkScheduler.ensureDaily(context)
     }
 
     override fun onUpdate(
@@ -29,7 +29,7 @@ class GoldRateWidgetProvider : AppWidgetProvider() {
         appWidgetIds: IntArray,
     ) {
         super.onUpdate(context, appWidgetManager, appWidgetIds)
-        WorkScheduler.ensurePeriodic(context)
+        WorkScheduler.ensureDaily(context)
         renderAsync(context, appWidgetIds)
     }
 
