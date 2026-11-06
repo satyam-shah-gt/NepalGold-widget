@@ -95,6 +95,17 @@ class RateStore(context: Context) {
         store.edit { it[KEY_LAST_ERROR] = System.currentTimeMillis() }
     }
 
+    /**
+     * Records that the last fetch brought no rate of today.
+     *
+     * The fetch worked, but the publisher had not published yet, so the rates on the widget are a
+     * day old. It leaves the same mark as a failed attempt - the shown rates may be out of date -
+     * and the footer keeps the time of the last rate that really was published.
+     */
+    suspend fun markFetchStale() {
+        store.edit { it[KEY_LAST_ERROR] = System.currentTimeMillis() }
+    }
+
     /** True when the most recent attempt failed, i.e. the shown rates may be out of date. */
     suspend fun isStale(): Boolean {
         val success = lastSuccessAt.first()
