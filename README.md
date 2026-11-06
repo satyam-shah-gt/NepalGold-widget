@@ -19,7 +19,8 @@ What changed in each version is in the [changelog](CHANGELOG.md).
   follow it.
 - **English and Nepali**, including Devanagari digits and the South Asian 2-2-3 grouping Nepal
   uses (`2,43,055`).
-- **A daily background fetch** through WorkManager, plus a manual refresh button.
+- **A daily background fetch** through WorkManager at 11:05 Nepal time — a little after the
+  publisher publishes — plus a manual refresh button.
 - **A notification when the publisher publishes a new rate** — the amount, the change and the day
   it belongs to, for the metal the widget is showing.
 - **Thirty days of history**, kept on the device.
@@ -89,6 +90,10 @@ A few decisions worth knowing about:
   label is a regular view instead.
 - **The chart's x axis is a calendar.** A day the publisher did not publish keeps its place and
   carries no point, so a gap in the line is visible instead of hidden.
+- **The daily fetch is timed in Nepal time.** A periodic WorkManager job has no time of day —
+  Android runs it somewhere inside the 24-hour window — so the daily run is a one-off job with
+  an initial delay, set for 11:05 Nepal time whatever the phone's timezone is. A six-hourly job
+  runs beside it as a safety net, so a run the system deferred is still followed by a fetch.
 - **The widget is built with the framework's `RemoteViews`.** That keeps the app free of a UI
   dependency and the release APK under 0.5 MB.
 - **The app has no launcher activity.** The settings screen is opened by tapping the widget and
