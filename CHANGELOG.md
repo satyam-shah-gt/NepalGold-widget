@@ -8,6 +8,21 @@ app ships under.
 
 Nothing yet.
 
+## [1.6] - 2026-11-5
+
+### Fixed
+
+- **A rate that was not published yet was counted as an update.** The endpoint keeps serving the
+  last published payload until the publisher updates, and it does not publish at all on weekends
+  and holidays. The app took such a payload for today's rate: it refreshed the time in the
+  footer as if the widget had just been updated, and it could post a notification that said the
+  rate had changed when it had not. A payload that is not the rate of today is now an
+  unsuccessful update — the widget keeps the time of the last rate that really was published,
+  and the app stays quiet.
+- **The app waited for the next scheduled run when the publisher was late.** A run that found no
+  rate of today is now tried again after the usual backoff, so the rate of the day appears as
+  soon as the publisher puts it online.
+
 ## [1.5] - 2026-11-5
 
 ### Fixed
